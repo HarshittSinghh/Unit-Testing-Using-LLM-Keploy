@@ -1,0 +1,22 @@
+kiit@Harshit-22052118:/mnt/c/Users/KIIT/Desktop/Assignment-5$ g++ -std=c++17 -fprofile-arcs -ftest-coverage     -I/usr/include -pthread     tests/test_main.cpp     -lgtest -lgtest_main     -o test_runner
+kiit@Harshit-22052118:/mnt/c/Users/KIIT/Desktop/Assignment-5$ ./test_runner
+[==========] Running 5 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 5 tests from MathTests
+[ RUN      ] MathTests.Addition
+[       OK ] MathTests.Addition (0 ms)
+[ RUN      ] MathTests.Subtraction
+[       OK ] MathTests.Subtraction (0 ms)
+[ RUN      ] MathTests.Multiplication
+[       OK ] MathTests.Multiplication (0 ms)
+[ RUN      ] MathTests.Division
+[       OK ] MathTests.Division (0 ms)
+[ RUN      ] MathTests.Factorial
+[       OK ] MathTests.Factorial (0 ms)
+[----------] 5 tests from MathTests (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 5 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 5 tests.
+libgcov profiling error:/mnt/c/Users/KIIT/Desktop/Assignment-5/test_main.gcda:overwriting an existing profile data with a different timestamp
+kiit@Harshit-22052118:/mnt/c/Users/KIIT/Desktop/Assignment-5$
