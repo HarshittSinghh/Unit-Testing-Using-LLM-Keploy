@@ -1,19 +1,21 @@
 const fs = require('fs');
 
 function sanitizeTestFile(path) {
-  let content = fs.readFileSync(path, 'utf-8');
-  content = content
-    .replace(/```[a-z]*\n?/gi, '') 
-    .replace(/```/g, '')
-    .replace(/^Here's.*\n?/gi, '') 
-    .replace(/^###.*\n?/gi, '')  
-    .replace(/^Output.*\n?/gi, '')
-    .trim();
+  try {
+    let code = fs.readFileSync(path, 'utf-8');
 
-  fs.writeFileSync(path, content);
-  console.log("✅ test_main.cpp sanitized.");
+    code = code
+      .replace(/```[a-z]*\n?/gi, '')                         
+      .replace(/###.*\n?/g, '')                              
+      .replace(/Here(?:'s| is).*?(?=#include)/gis, '')        
+      .replace(/^\s*\n/gm, '')                            
+      .trim();
+
+    fs.writeFileSync(path, code);
+    console.log(`${path} sanitized.`);
+  } catch (err) {
+    console.error(`Failed to sanitize ${path}:`, err.message);
+  }
 }
 
-module.exports = {
-  sanitizeTestFile,
-};
+module.exports = { sanitizeTestFile };

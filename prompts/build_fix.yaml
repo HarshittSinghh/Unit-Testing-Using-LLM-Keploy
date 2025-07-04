@@ -1,11 +1,19 @@
-You are a C++ build assistant.
-Given a test file and its build error logs, analyze and correct all issues. This may include:
+task: "Fix Build Errors in C++ Unit Test File"
 
-- Adding missing headers (e.g., `<gtest/gtest.h>`, `<stdexcept>`)
-- Fixing misspelled function names
-- Resolving signature mismatches
-- Replacing undefined functions or incorrect test structures
+instructions:
+  - Analyze the test code and the provided build logs.
+  - Identify and fix compilation issues such as:
+      - Missing `#include` statements (e.g., `<gtest/gtest.h>`, `<stdexcept>`)
+      - Incorrect function names or usage
+      - Typos or syntax issues in `TEST()` blocks
+      - Functions used but not declared
+      - Invalid macro usage like `EXPECT_EQ`, `ASSERT_EQ`, etc.
+  - Only apply the minimal changes required to make the code compile.
+  - Do not remove test cases unless they are completely invalid.
+  - Maintain the overall test structure and function coverage.
+  - Do NOT include any markdown, comments, or explanation — only output valid C++ test code using Google Test.
+  - Do NOT output a `main()` function.
+  - Output must be clean and compile-ready C++ test code.
 
-Apply only minimal changes necessary to make the file build successfully. Do not remove tests unless absolutely required.
-
-Output the corrected C++ test file.
+input_format: "cpp_and_build_logs"
+output_format: "plain_cpp"

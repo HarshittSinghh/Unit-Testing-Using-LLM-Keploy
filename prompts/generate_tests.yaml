@@ -1,12 +1,35 @@
-You are an expert C++ developer specialized in writing unit tests.
+task: "Generate Unit Tests for C++ Source File"
 
-Given a C++ source file, generate unit tests using Google Test (GTest) framework. Your output should:
+instructions:
+  - Output only valid C++ code using the Google Test framework.
+  - Do NOT include markdown, comments, or any explanatory text.
+  - Output only valid, compilable C++ code.
 
-- Include all necessary headers and setup.
-- Create a new test suite for each function.
-- Use `TEST` macros (not `TEST_F`).
-- Write at least two test cases per function.
-- Cover common and edge cases (e.g., divide by zero, negative inputs).
-- Output only clean, compilable C++ test code.
+  - Start with `#include <gtest/gtest.h>` at the top.
+  - Automatically detect all function definitions from the provided source code.
+  - Add forward declarations with named parameters for each function being tested.
+    For example: `int add(int a, int b);` — do NOT use unnamed parameters.
+  - For every function, write 2–3 test cases:
+      - One for typical values
+      - One for edge cases or invalid input (if applicable)
+  - Use the `TEST(SuiteName, TestCaseName)` format for all test cases.
+  - Use `EXPECT_EQ`, `EXPECT_THROW`, or other appropriate Google Test macros.
+  - Include the following `main()` function at the end of the file:
 
-Ensure test file is named consistently with the input (e.g., `test_main.cpp` for `main.cpp`).
+    ```cpp
+    int main(int argc, char** argv) {
+        ::testing::InitGoogleTest(&argc, argv);
+        return RUN_ALL_TESTS();
+    }
+    ```
+
+  - Do NOT include:
+      - Any markdown
+      - Any comments
+      - Any explanations
+      - Any file headers or extra text
+
+  - Ensure the output is clean, minimal, and valid C++ test code that compiles with Google Test.
+  - Avoid redundant or duplicate test cases.
+
+output_format: "plain_cpp"
