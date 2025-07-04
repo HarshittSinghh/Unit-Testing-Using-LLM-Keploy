@@ -58,8 +58,8 @@ Assignment-5/
 #### Run this in WSL or Ubantu Terminal.
 ```bash
 cd Assignment-5
-g++ -std=c++17 -o main.out cpp_projects/main.cpp tests/test_main.cpp -lgtest -lgtest_main -pthread
-./main.out
+g++ -fprofile-arcs -ftest-coverage -std=c++17 cpp_project/main.cpp tests/test_main.cpp -lgtest -lgtest_main -pthread -o test_runner
+./test_runner
 ```
 
 #### Run a Prompt with Ollama
@@ -68,10 +68,9 @@ cd Assignment-5
 npm init -y
 npm install axios
 node index.js prompts/generate_tests.yaml
-
 ```
 
-## Author: Harshit Kumar Singh
+#### Author: Harshit Kumar Singh
 
 
 
