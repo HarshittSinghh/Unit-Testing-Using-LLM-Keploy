@@ -25,7 +25,9 @@ This project demonstrates how to write and improve unit tests for C++ source fil
 
 ## 📸 Test Results
 
-![Test Output](./ScreenShots/1.png)
+![Test Output](./ScreenShot/1.png)
+
+![Test Output](./ScreenShot/2.png)
 
 
 ## 📁 Project Structure
