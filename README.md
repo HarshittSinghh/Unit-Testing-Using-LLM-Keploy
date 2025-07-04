@@ -62,7 +62,14 @@ g++ -fprofile-arcs -ftest-coverage -std=c++17 cpp_project/main.cpp tests/test_ma
 ./test_runner
 ```
 
-#### Run a Prompt with Ollama
+## Run this on GitBash File and make sure the Ollama Codellama:7b is running Locally on the machine
+
+### Running Ollama Codellama on local machine:
+If Ollama is not installed on your machine go and download it from the Ollama website
+``` bash
+ollama run codellama:7b
+```
+
 ``` bash
 cd Assignment-5
 npm init -y
