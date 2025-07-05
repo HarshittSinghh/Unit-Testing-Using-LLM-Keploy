@@ -16,7 +16,7 @@ function read(file) {
 function write(file, data) {
   try {
     fs.writeFileSync(file, data);
-    console.log(`✅ Written: ${file}`);
+    console.log(`Written: ${file}`);
   } catch {}
 }
 
@@ -26,7 +26,7 @@ async function generateTests() {
   const result = await askOllama(prompt, cppCode);
   write('tests/test_main.cpp', result);
   sanitizeTestFile('tests/test_main.cpp');
-  console.log("🧪 Initial tests generated.");
+  console.log("Initial tests generated.");
 }
 
 async function refineTests() {
@@ -35,7 +35,7 @@ async function refineTests() {
   const result = await askOllama(prompt, tests);
   write('tests/test_main.cpp', result);
   sanitizeTestFile('tests/test_main.cpp');
-  console.log("🔁 Tests refined.");
+  console.log("Tests refined.");
 }
 
 function buildProject() {
@@ -43,10 +43,10 @@ function buildProject() {
     execSync('wsl g++ -fprofile-arcs -ftest-coverage -std=c++17 /mnt/c/Users/KIIT/Desktop/Assignment-5/cpp_project/main.cpp /mnt/c/Users/KIIT/Desktop/Assignment-5/tests/test_main.cpp -lgtest -lgtest_main -pthread -o /mnt/c/Users/KIIT/Desktop/Assignment-5/test_runner', {
       stdio: 'inherit'
     });
-    console.log("✅ Build succeeded.");
+    console.log("Build succeeded.");
     return true;
   } catch (err) {
-    console.log("❌ Build failed.");
+    console.log("Build failed.");
     return err;
   }
 }
@@ -58,7 +58,7 @@ async function fixBuildIfFailed(err) {
   const result = await askOllama(prompt, `${brokenCode}\n\n[Build Logs]\n${logs}`);
   write('tests/test_main.cpp', result);
   sanitizeTestFile('tests/test_main.cpp');
-  console.log("🔧 Build errors attempted to be fixed.");
+  console.log("Build errors attempted to be fixed.");
 }
 
 function runTestsAndCoverage() {
@@ -68,8 +68,8 @@ function runTestsAndCoverage() {
     execSync('wsl lcov --remove coverage.info "/usr/*" "*/gtest/*" -o cleaned.info');
     const summary = execSync('wsl lcov --summary cleaned.info').toString();
     fs.writeFileSync('report.md', `# Test Coverage Report\n\n\`\`\`\n${summary}\n\`\`\``);
-    console.log("📊 Coverage report generated.");
-    console.log("📄 Summary:\n", summary);
+    console.log("Coverage report generated.");
+    console.log("Summary:\n", summary);
     return summary;
   } catch {
     return '';
@@ -82,7 +82,7 @@ async function improveCoverage() {
   const updatedTests = await askOllama(prompt, cov);
   write('tests/test_main.cpp', updatedTests);
   sanitizeTestFile('tests/test_main.cpp');
-  console.log("📈 Test coverage improved.");
+  console.log("Test coverage improved.");
 }
 
 (async () => {
@@ -94,7 +94,7 @@ async function improveCoverage() {
     await fixBuildIfFailed(buildResult);
     buildResult = buildProject();
     if (buildResult !== true) {
-      console.log("❌ Build failed again. Exiting.");
+      console.log("Build failed again. Exiting.");
       return;
     }
   }

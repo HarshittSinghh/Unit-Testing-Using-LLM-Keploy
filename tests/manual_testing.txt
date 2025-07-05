@@ -21,15 +21,14 @@ TEST(ArithmeticTests, Multiplication) {
 
 TEST(ArithmeticTests, Division) {
     EXPECT_EQ(divide(10, 5), 2);
-    EXPECT_EQ(divide(10, 0), -1);  
+    EXPECT_THROW(divide(10, 0), std::invalid_argument); 
 }
 
 TEST(ArithmeticTests, Factorial) {
     EXPECT_EQ(factorial(5), 120);
     EXPECT_EQ(factorial(0), 1);
-    EXPECT_EQ(factorial(-1), -1); 
+    EXPECT_THROW(factorial(-1), std::domain_error);  
 }
-
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
