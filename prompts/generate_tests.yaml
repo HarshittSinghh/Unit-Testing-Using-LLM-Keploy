@@ -2,27 +2,27 @@ task: "Generate Unit Tests for C++ Source File"
 
 instructions:
   - Output only valid C++ code using the Google Test framework.
-  - Do NOT include markdown, comments, or any explanatory text.
-  - Output only valid, compilable C++ code.
-  - Start with #include <gtest/gtest.h> at the top.
-  - Automatically detect all function definitions from the provided source code.
-  - Add forward declarations with named parameters for each function being tested.
-  - For every function, write 2–3 test cases:
+  - Output must not contain markdown, comments, explanations, or extra text.
+  - Start the file with: #include <gtest/gtest.h>
+  - Automatically detect all function definitions from the input C++ source code.
+  - Add forward declarations using named parameters for each function.
+    - Example: int add(int a, int b);
+  - For each function, write 2–3 test cases:
       - One for typical values
       - One for edge cases or invalid input (if applicable)
-  - Use the TEST(SuiteName, TestCaseName) format for all test cases.
-  - Use EXPECT_EQ, EXPECT_THROW, or other appropriate Google Test macros.
-  - Include the following main() function at the end of the file:
+  - Use the format: TEST(SuiteName, TestCaseName)
+  - Use appropriate Google Test macros like EXPECT_EQ, EXPECT_THROW, etc.
+  - Include this line at the top if any function throws exceptions:
+    - #include <stdexcept>
+  - Append the following main() function to the end of the test file:
+
     int main(int argc, char** argv) {
         ::testing::InitGoogleTest(&argc, argv);
         return RUN_ALL_TESTS();
     }
-  - Do NOT include:
-      - Any markdown
-      - Any comments
-      - Any explanations
-      - Any file headers or extra text
-  - Ensure the output is clean, minimal, and valid C++ test code that compiles with Google Test.
-  - Avoid redundant or duplicate test cases.
+
+  - Ensure the final output is clean, minimal, and valid C++ test code that compiles with Google Test.
+  - Do NOT repeat or duplicate test cases.
+  - Do NOT include main function from the input C++ source.
 
 output_format: "plain_cpp"
